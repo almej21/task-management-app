@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable jsx-a11y/alt-text */
+import "./App.css";
+import React from "react";
+import Navbar from "./navbar/Navbar";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Login from "./routes/login/Login";
+// import Register from "./pages/register/Register";
+// import ImHungry from "./pages/ImHungry/ImHungry";
+// import Userinfo from "./pages/userinfo/Userinfo";
+// import Restaurant from "./pages/restaurant/Restaurant";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/imhungry" element={<ImHungry />} />
+          <Route path="/userinfo" element={<Userinfo />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/restaurant/:id" element={<Restaurant />} /> */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
