@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../../features/userInfoSlice";
 import { Link } from "react-router-dom";
 import SnackBar from "components/SnackbarMUI/SnackBar";
-import axios from "axios";
+import * as ServerApi from "utils/serverApi";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -36,77 +36,66 @@ export default function Login() {
     }, 3000);
   };
 
+  // const loginDiv = myRef.current;
+  // loginDiv.classList.add("hidden");
+  // loginDiv.classList.remove("hidden");
   // withCredentials = giving access to the server to read cookies etc.
   useEffect(() => {
-    const loginDiv = myRef.current;
-    axios({
-      url: "http://localhost:4000/user/userinfo",
-      method: "GET",
-      withCredentials: true,
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          loginDiv.classList.add("hidden");
+    async function fetchUserInfo() {
+      await ServerApi.getuserinfo()
+        .then((res) => {
           dispatch(login({ ...res.data, is_logged_in: true }));
-        } else {
-          loginDiv.classList.remove("hidden");
+        })
+        .catch((err) => {
           dispatch(logout());
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
+        });
+    }
+    fetchUserInfo();
   }, []);
 
   useEffect(() => {
     setLoggedIn(userInfo.is_logged_in);
   }, [userInfo]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const data = {
       email: document.getElementById("user_name-input").value,
       password: document.getElementById("user_pass-input").value,
     };
-    axios
-      .post("http://localhost:4000/user/login", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+
+    await ServerApi.login(data)
       .then((res) => {
-        console.log(res);
         dispatch(login({ ...res.data, is_logged_in: true }));
+        console.log(res);
       })
       .catch((err) => {
-        if (err.response.status === 401) {
-          shakePassInput();
-        }
-        if (err.response.status === 404) {
-          shakeUserNameInput();
-        }
         console.log(err.response.data);
+        switch (err.response.status) {
+          case 401:
+            shakePassInput();
+            break;
+
+          case 404:
+            shakeUserNameInput();
+            break;
+
+          default:
+        }
       });
   };
 
-  const handleLogOut = (e) => {
+  const handleLogOut = async (e) => {
     e.preventDefault();
+    var res = await ServerApi.logout();
 
-    axios({
-      url: "http://localhost:4000/user/logout",
-      method: "GET",
-      withCredentials: true,
-    })
-      .then((res) => {
-        console.log(res.data);
-        setLoggedIn(false);
-        dispatch(logout());
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
+    if (res.status === 200) {
+      setLoggedIn(false);
+      dispatch(logout());
+    } else {
+      console.log(res);
+    }
   };
 
   return (

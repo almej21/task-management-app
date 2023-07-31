@@ -39,7 +39,7 @@ export default function Userinfo() {
     <div className="userinfo-div">
       {!isLoggedIn ? (
         <div className="logged-out-user-info">
-          <h1>please Login to view Info</h1>
+          <h1>Please Login to view Info</h1>
         </div>
       ) : (
         <div className="logged-in-user-info">
