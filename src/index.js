@@ -5,15 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import userInfoReducer from "./features/userInfo";
+import userInfoReducer from "./features/userInfoSlice";
 
 const store = configureStore({
   reducer: {
     userInfo: userInfoReducer,
   },
 });
-
-console.log("store = ", store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

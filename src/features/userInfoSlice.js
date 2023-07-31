@@ -1,4 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  writeToLocalStorage,
+  readFromLocalStorage,
+} from "utils/localStorageHelpers";
 
 const initialStateValue = {
   is_logged_in: false,
@@ -22,10 +26,12 @@ export const userInfoSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.value = action.payload;
+      writeToLocalStorage("is_logged_in", true);
     },
 
     logout: (state) => {
       state.value = initialStateValue;
+      writeToLocalStorage("is_logged_in", false);
     },
   },
 });

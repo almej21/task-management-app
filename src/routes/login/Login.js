@@ -6,14 +6,10 @@ import "./login.css";
 import InputCom from "../../components/Input/InputCom";
 import ButtonCom from "../../components/Button/ButtonCom";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../../features/userInfo";
+import { login, logout } from "../../features/userInfoSlice";
 import { Link } from "react-router-dom";
 import SnackBar from "components/SnackbarMUI/SnackBar";
 import axios from "axios";
-import {
-  writeToLocalStorage,
-  readFromLocalStorage,
-} from "utils/localStorageHelpers";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -50,21 +46,16 @@ export default function Login() {
     })
       .then((res) => {
         if (res.status === 200) {
+          loginDiv.classList.add("hidden");
           dispatch(login({ ...res.data, is_logged_in: true }));
-          console.log("login page rerender");
         } else {
+          loginDiv.classList.remove("hidden");
           dispatch(logout());
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
       });
-
-    if (loggedIn) {
-      loginDiv.classList.add("hidden");
-    } else {
-      loginDiv.classList.remove("hidden");
-    }
   }, []);
 
   useEffect(() => {
@@ -86,8 +77,6 @@ export default function Login() {
         withCredentials: true,
       })
       .then((res) => {
-        writeToLocalStorage("is_logged_in", true);
-
         console.log(res);
         dispatch(login({ ...res.data, is_logged_in: true }));
       })
@@ -98,7 +87,7 @@ export default function Login() {
         if (err.response.status === 404) {
           shakeUserNameInput();
         }
-        console.log(err);
+        console.log(err.response.data);
       });
   };
 
@@ -111,14 +100,12 @@ export default function Login() {
       withCredentials: true,
     })
       .then((res) => {
-        writeToLocalStorage("is_logged_in", false);
-
         console.log(res.data);
         setLoggedIn(false);
         dispatch(logout());
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
       });
   };
 
@@ -152,7 +139,11 @@ export default function Login() {
               />
               <ButtonCom onClick={handleLogin} btnValue="LOGIN"></ButtonCom>
             </form>
-            <Link className="link" to="/register">
+            <Link
+              // style={{ color: "inherit" }}
+              className="new-account-link"
+              to="/register"
+            >
               Don't have an account? Register here
             </Link>
           </div>

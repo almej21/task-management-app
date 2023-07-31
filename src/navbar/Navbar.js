@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+// its critical to use the is_logged_in value from the local storage only
+//for rendering data that is not private.
 import { readFromLocalStorage } from "utils/localStorageHelpers";
 
 const Navbar = () => {
@@ -12,8 +14,6 @@ const Navbar = () => {
   // if it changes then refresh the navbar and update
   // the LOGIN and LOGOUT string accordingly.
   const loggedIn = useSelector((state) => state.userInfo.value.is_logged_in);
-
-  console.log(readFromLocalStorage("is_logged_in"));
 
   return (
     <div className="Navbar">
