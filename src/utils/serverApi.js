@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// withCredentials = giving access to the server to read cookies etc.
+
 export const login = (data) => {
   return new Promise((resolve, reject) => {
     axios

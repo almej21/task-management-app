@@ -24,8 +24,7 @@
     font-size: 130%;
 }
 .input.error {
-    -webkit-animation: shake 0.17s ease-in-out 0s 3;
-            animation: shake 0.2s ease-in-out 0s 3;
+    -webkit-animation: shake 0.17s ease-in-out 0s 10;
     box-shadow: 0 0 0.5em red;
 }
 @-webkit-keyframes shake {

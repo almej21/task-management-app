@@ -1,61 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-script-url */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./login.css";
 import InputCom from "../../components/Input/InputCom";
 import ButtonCom from "../../components/Button/ButtonCom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login, logout } from "../../features/userInfoSlice";
 import { Link } from "react-router-dom";
 import SnackBar from "components/SnackbarMUI/SnackBar";
 import * as ServerApi from "utils/serverApi";
+import { readFromLocalStorage } from "utils/localStorageHelpers";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [pass, setPass] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const global_is_logged_in = readFromLocalStorage("is_logged_in");
+  const [isLoggedInLocal, setIsLoggedInLocal] = useState(global_is_logged_in);
   const myRef = useRef(null);
-
-  const userInfo = useSelector((state) => state.userInfo.value);
   const dispatch = useDispatch();
-
   var passInputComponent = document.getElementById("user_pass-input");
   var userNameInputComponent = document.getElementById("user_name-input");
 
-  var shakeUserNameInput = function () {
+  const shakeUserNameInput = function () {
+    console.log(userName);
+
     userNameInputComponent.classList.add("error");
     setTimeout(() => {
       userNameInputComponent.classList.remove("error");
-    }, 3000);
+    }, 1200);
   };
-  var shakePassInput = function () {
+  const shakePassInput = function () {
     passInputComponent.classList.add("error");
     setTimeout(() => {
       passInputComponent.classList.remove("error");
-    }, 3000);
+    }, 1200);
   };
-
-  // const loginDiv = myRef.current;
-  // loginDiv.classList.add("hidden");
-  // loginDiv.classList.remove("hidden");
-  // withCredentials = giving access to the server to read cookies etc.
-  useEffect(() => {
-    async function fetchUserInfo() {
-      await ServerApi.getuserinfo()
-        .then((res) => {
-          dispatch(login({ ...res.data, is_logged_in: true }));
-        })
-        .catch((err) => {
-          dispatch(logout());
-        });
-    }
-    fetchUserInfo();
-  }, []);
-
-  useEffect(() => {
-    setLoggedIn(userInfo.is_logged_in);
-  }, [userInfo]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -67,6 +44,7 @@ export default function Login() {
 
     await ServerApi.login(data)
       .then((res) => {
+        setIsLoggedInLocal(true);
         dispatch(login({ ...res.data, is_logged_in: true }));
         console.log(res);
       })
@@ -91,7 +69,7 @@ export default function Login() {
     var res = await ServerApi.logout();
 
     if (res.status === 200) {
-      setLoggedIn(false);
+      setIsLoggedInLocal(false);
       dispatch(logout());
     } else {
       console.log(res);
@@ -100,7 +78,7 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      {loggedIn ? (
+      {isLoggedInLocal ? (
         <div className="logged-in">
           <ButtonCom onClick={handleLogOut} btnValue="LOGOUT"></ButtonCom>
         </div>
