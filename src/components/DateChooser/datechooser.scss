@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/bootstrap';
+.datechooser-main-div {
+    margin-top: 1.5rem;
+    .dates-group {
+        display: flex;
+        flex-wrap: wrap;
+        // flex-direction: row-reverse;
+    }
+    .date-btn {
+        border: 1px solid #393939; 
+        color: #ffffff;
+        background-color: #000;
+        border-radius: 1rem; /* Adjust border radius if necessary */
+        &:hover {
+            background-color: #1e1e1e;
+
+        }
+    }
+}

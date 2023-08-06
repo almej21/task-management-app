@@ -5,6 +5,7 @@ import Navbar from "./navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import Login from "routes/login/Login";
+import Fixturesplay from "routes/fixturesplay/Fixturesplay";
 import Userinfo from "routes/userinfo/Userinfo";
 // import Register from "./pages/register/Register";
 // import ImHungry from "./pages/ImHungry/ImHungry";
@@ -17,8 +18,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/fixturesplay" element={<Fixturesplay />} />
           <Route path="/userinfo" element={<Userinfo />} />
-          {/* <Route path="/restaurant/:id" element={<Restaurant />} /> */}
         </Routes>
       </div>
     </Router>

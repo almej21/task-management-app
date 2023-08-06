@@ -52,3 +52,21 @@ export const getuserinfo = () => {
       });
   });
 };
+
+export const allfixtures = () => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: "http://localhost:4000/fixtures/allfixturesavailable",
+      method: "GET",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+};

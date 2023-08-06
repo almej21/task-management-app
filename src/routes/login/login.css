@@ -1,7 +1,3 @@
-.login-form {
-  /* display: none; */
-}
-
 .login-div{
     display: flex;
     flex-direction: column;

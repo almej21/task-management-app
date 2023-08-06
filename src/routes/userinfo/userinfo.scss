@@ -1,11 +1,22 @@
+
 .userinfo-div {
-    margin: 1rem 2rem;
+    margin: 4.5rem 2rem;
+    .title {
+        color: #ffffff;
+    }
 }
 
 .logged-in-user-info{
+    h1 {
+        color: #ffffff;
+
+    }
+    h2 {
+        color: #ffffff;
+
+    }
     margin:  auto;
     margin-top: 25px;
-    width: 48%;
     background: linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.1),

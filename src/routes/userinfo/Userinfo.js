@@ -5,7 +5,7 @@ import { login, logout } from "../../features/userInfoSlice";
 import axios from "axios";
 import { readFromLocalStorage } from "utils/localStorageHelpers";
 import * as dateHelpers from "utils/dateHelpers";
-import "./userinfo.css";
+import "./userinfo.scss";
 
 export default function Userinfo() {
   const userInfo = useSelector((state) => state.userInfo.value);
@@ -39,7 +39,7 @@ export default function Userinfo() {
     <div className="userinfo-div">
       {!isLoggedIn ? (
         <div className="logged-out-user-info">
-          <h1>Please Login to view Info</h1>
+          <h1 className="title">Please Login to view Info</h1>
         </div>
       ) : (
         <div className="logged-in-user-info">
