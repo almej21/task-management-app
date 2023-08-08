@@ -1,10 +1,29 @@
 @import '~bootstrap/scss/bootstrap';
 .datechooser-main-div {
+    display: flex;
+    justify-content: center;
     margin-top: 1.5rem;
+    @media (max-width: 1000px) {
+        width: 95%; /* For mobile screens (width < 768px) */
+    }
+    @media (min-width: 1001px) {
+        width: 80%; /* For desktop screens (width >= 768px) */
+    }
     .dates-group {
+        overflow: auto;
         display: flex;
-        flex-wrap: wrap;
-        // flex-direction: row-reverse;
+        &::-webkit-scrollbar {
+            width: 5px;
+          }
+        
+          &::-webkit-scrollbar-thumb {
+            background-color: #383838; /* Color of the thumb */
+            border-radius: 5px;
+          }
+        
+          &::-webkit-scrollbar-track {
+            background-color: #000000; /* Color of the track */
+          }
     }
     .date-btn {
         border: 1px solid #393939; 
@@ -14,6 +33,10 @@
         &:hover {
             background-color: #1e1e1e;
 
+        }
+        @media (max-width: 1000px) {
+            height: 7rem;
+            font-size: 2rem; /* For mobile screens (width < 768px) */
         }
     }
 }

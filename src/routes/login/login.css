@@ -1,3 +1,6 @@
+.login-page {
+  margin-top: 6rem;
+}
 .login-div{
     display: flex;
     flex-direction: column;

@@ -6,6 +6,7 @@ console.log("today:", today);
 
 const initialStateValue = {
   date: today,
+  country_leagues: ["England", "Spain", "Italy", "France", "Germany"],
 };
 
 export const fixturesSlice = createSlice({
@@ -20,12 +21,15 @@ export const fixturesSlice = createSlice({
   //the reducers/actions functions.
   reducers: {
     setDate: (state, action) => {
-      state.value = action.payload;
-      // console.log("state changed: ", state.value);
+      state.value.date = action.payload;
+    },
+
+    setLeagues: (state, action) => {
+      state.value.country_leagues = action.payload;
     },
   },
 });
 
-export const { setDate } = fixturesSlice.actions;
+export const { setDate, setLeagues } = fixturesSlice.actions;
 
 export default fixturesSlice.reducer;

@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import * as ServerApi from "utils/serverApi";
 import * as dateHelpers from "utils/dateHelpers";
 import DateChooser from "components/DateChooser/DateChooser";
+import LeaguesChooser from "components/LeaguesChooser/LeaguesChooser";
 import { useSelector } from "react-redux";
 import "./fixturesplay.scss";
 
 const Fixturesplay = (props) => {
   const [fixtures, setFixtures] = useState([]);
-  const dateGlobalState = useSelector((state) => state.fixtures.value);
+  const dateGlobalState = useSelector((state) => state.fixtures.value.date);
+  const countryLeaguesGlobalState = useSelector(
+    (state) => state.fixtures.value.country_leagues
+  );
   var selectedDate = dateGlobalState.date;
 
   useEffect(() => {
@@ -25,6 +29,7 @@ const Fixturesplay = (props) => {
   return (
     <div className="fixturesplay-page">
       <DateChooser></DateChooser>
+      <LeaguesChooser></LeaguesChooser>
       <div className="fixtures-table">
         <div className="fixtures">
           {filteredFixtures.map((fixture) => {

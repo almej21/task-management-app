@@ -18,6 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/fixturesplay" element={<Fixturesplay />} />
           <Route path="/userinfo" element={<Userinfo />} />
         </Routes>
