@@ -6,12 +6,10 @@ import * as dateHelpers from "utils/dateHelpers";
 import { useDispatch } from "react-redux";
 import { setDate } from "features/fixturesSlice";
 
-var dates = dateHelpers.getNextDaysArray(14);
+var dates = dateHelpers.getNextDaysArray(10);
 
 export default function DateChooser() {
   const dispatch = useDispatch();
-
-  // const [date, setDate] = useState("");
 
   const handleClick = (date) => {
     dispatch(setDate({ date: date }));

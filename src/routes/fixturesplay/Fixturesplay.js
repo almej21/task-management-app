@@ -19,7 +19,9 @@ const Fixturesplay = (props) => {
       .then((res) => {
         setFixtures(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log("Server ERROR");
+      });
   }, []);
 
   var filteredFixtures = fixtures.filter((fixture) => {

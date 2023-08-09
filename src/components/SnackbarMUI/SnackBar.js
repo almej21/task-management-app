@@ -3,6 +3,7 @@ import Snackbar from "@mui/material/Snackbar";
 import { useEffect, useState, forwardRef } from "react";
 import MuiAlert from "@mui/material/Alert";
 import { useSelector } from "react-redux";
+import { readFromLocalStorage } from "utils/localStorageHelpers";
 
 // elevation is the alert popup shadow.
 const Alert = forwardRef(function Alert(props, ref) {
@@ -10,6 +11,8 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 export default function SnackBar() {
+  const isLoggedIn = readFromLocalStorage("is_logged_in");
+
   const is_logged_in = useSelector(
     (state) => state.userInfo.value.is_logged_in
   );
@@ -20,7 +23,7 @@ export default function SnackBar() {
     } else {
       setOpen(false);
     }
-  }, [is_logged_in]);
+  }, [isLoggedIn]);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./inputCom.css";
+import "./inputCom.scss";
 import { useEffect } from "react";
 
 export default function InputCom(props) {

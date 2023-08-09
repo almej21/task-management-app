@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./login.css";
+import "./login.scss";
 import InputCom from "../../components/Input/InputCom";
 import ButtonCom from "../../components/Button/ButtonCom";
 import { useDispatch } from "react-redux";

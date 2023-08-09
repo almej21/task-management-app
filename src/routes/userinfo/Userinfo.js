@@ -30,7 +30,7 @@ export default function Userinfo() {
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
         dispatch(logout());
       });
   }, []);

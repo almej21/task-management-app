@@ -25,17 +25,13 @@ export const fixturesSlice = createSlice({
     },
 
     enableLeague: (state, action) => {
-      console.log("enableLeague: ");
       state.value.country_leagues.push(action.payload.target_league);
-      console.log(current(state.value));
     },
 
     disableLeague: (state, action) => {
-      console.log("disableLeague: ");
       state.value.country_leagues = state.value.country_leagues.filter(
         (league) => league !== action.payload.target_league
       );
-      console.log(current(state.value));
     },
   },
 });
