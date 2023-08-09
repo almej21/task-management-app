@@ -5,7 +5,6 @@ import ButtonCom from "../../components/Button/ButtonCom";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../features/userInfoSlice";
 import { Link } from "react-router-dom";
-import SnackBar from "components/SnackbarMUI/SnackBar";
 import * as ServerApi from "utils/serverApi";
 import { readFromLocalStorage } from "utils/localStorageHelpers";
 
@@ -106,17 +105,12 @@ export default function Login() {
               />
               <ButtonCom onClick={handleLogin} btnValue="LOGIN"></ButtonCom>
             </form>
-            <Link
-              // style={{ color: "inherit" }}
-              className="new-account-link"
-              to="/register"
-            >
+            <Link className="new-account-link" to="/register">
               Don't have an account? Register here
             </Link>
           </div>
         </div>
       )}
-      <SnackBar />
     </div>
   );
 }

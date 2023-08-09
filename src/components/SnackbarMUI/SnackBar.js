@@ -10,15 +10,17 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 export default function SnackBar() {
-  const userInfo = useSelector((state) => state.userInfo.value);
+  const is_logged_in = useSelector(
+    (state) => state.userInfo.value.is_logged_in
+  );
 
   useEffect(() => {
-    if (userInfo.is_logged_in) {
+    if (is_logged_in) {
       setOpen(true);
     } else {
       setOpen(false);
     }
-  }, [userInfo.is_logged_in]);
+  }, [is_logged_in]);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {

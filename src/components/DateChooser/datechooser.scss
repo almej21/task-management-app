@@ -3,10 +3,10 @@
     display: flex;
     justify-content: center;
     margin-top: 1.5rem;
-    @media (max-width: 1000px) {
+    @media (max-width: 900px) {
         width: 95%; /* For mobile screens (width < 768px) */
     }
-    @media (min-width: 1001px) {
+    @media (min-width: 901px) {
         width: 80%; /* For desktop screens (width >= 768px) */
     }
     .dates-group {
@@ -34,7 +34,7 @@
             background-color: #1e1e1e;
 
         }
-        @media (max-width: 1000px) {
+        @media (max-width: 900px) {
             height: 7rem;
             font-size: 2rem; /* For mobile screens (width < 768px) */
         }

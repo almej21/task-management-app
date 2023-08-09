@@ -9,7 +9,7 @@ import "./fixturesplay.scss";
 const Fixturesplay = (props) => {
   const [fixtures, setFixtures] = useState([]);
   const dateGlobalState = useSelector((state) => state.fixtures.value.date);
-  const countryLeaguesGlobalState = useSelector(
+  const selectedLeaguesGlobalState = useSelector(
     (state) => state.fixtures.value.country_leagues
   );
   var selectedDate = dateGlobalState.date;
@@ -23,7 +23,10 @@ const Fixturesplay = (props) => {
   }, []);
 
   var filteredFixtures = fixtures.filter((fixture) => {
-    return fixture.date === selectedDate;
+    return (
+      fixture.date === selectedDate &&
+      selectedLeaguesGlobalState.includes(fixture.league.country)
+    );
   });
 
   return (

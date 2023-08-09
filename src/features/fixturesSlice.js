@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import * as dateHelpers from "utils/dateHelpers";
 
 var today = dateHelpers.getFormattedDate();
@@ -24,12 +24,22 @@ export const fixturesSlice = createSlice({
       state.value.date = action.payload;
     },
 
-    setLeagues: (state, action) => {
-      state.value.country_leagues = action.payload;
+    enableLeague: (state, action) => {
+      console.log("enableLeague: ");
+      state.value.country_leagues.push(action.payload.target_league);
+      console.log(current(state.value));
+    },
+
+    disableLeague: (state, action) => {
+      console.log("disableLeague: ");
+      state.value.country_leagues = state.value.country_leagues.filter(
+        (league) => league !== action.payload.target_league
+      );
+      console.log(current(state.value));
     },
   },
 });
 
-export const { setDate, setLeagues } = fixturesSlice.actions;
+export const { setDate, enableLeague, disableLeague } = fixturesSlice.actions;
 
 export default fixturesSlice.reducer;
