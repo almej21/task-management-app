@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import "./App.css";
-import React from "react";
-import Navbar from "./navbar/Navbar";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
 import SnackBar from "components/SnackbarMUI/SnackBar";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "routes/login/Login";
-import Fixturesplay from "routes/fixturesplay/Fixturesplay";
-import Userinfo from "routes/userinfo/Userinfo";
 import Register from "routes/register/Register";
+import Tasks from "routes/tasks/Tasks";
+import "./App.css";
+import Navbar from "./navbar/Navbar";
 
 function App() {
   return (
@@ -20,8 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/fixturesplay" element={<Fixturesplay />} />
-          <Route path="/userinfo" element={<Userinfo />} />
+          <Route path="/tasks" element={<Tasks />} />
         </Routes>
       </div>
     </Router>

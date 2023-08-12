@@ -2,10 +2,31 @@ import axios from "axios";
 
 // withCredentials = giving access to the server to read cookies etc.
 
-export const login = (data) => {
+export const signin = (data) => {
+  const reqData = {
+    email: data.email,
+    password: data.password,
+  };
   return new Promise((resolve, reject) => {
     axios
-      .post("http://localhost:4000/user/login", data, {
+      .post("http://localhost:4000/auth/signin", reqData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const signup = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("http://localhost:4000/auth/signup", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -20,14 +41,14 @@ export const login = (data) => {
   });
 };
 
-export const register = (data) => {
+export const logout = (token) => {
+  const accToken = "Bearer " + token;
   return new Promise((resolve, reject) => {
     axios
-      .post("http://localhost:4000/user/signup", data, {
+      .post("http://localhost:4000/auth/logout", null, {
         headers: {
-          "Content-Type": "application/json",
+          Authorization: accToken,
         },
-        withCredentials: true,
       })
       .then((res) => {
         resolve(res);
@@ -38,48 +59,33 @@ export const register = (data) => {
   });
 };
 
-export const logout = () => {
-  return new Promise((resolve, reject) => {
-    axios({
-      url: "http://localhost:4000/user/logout",
-      method: "GET",
-      withCredentials: true,
-    })
-      .then((res) => {
-        resolve(res);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
+// export const getuserinfo = () => {
+//   return new Promise((resolve, reject) => {
+//     axios({
+//       url: "http://localhost:4000/user/userinfo",
+//       method: "GET",
+//       withCredentials: true,
+//     })
+//       .then((res) => {
+//         resolve(res);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         reject(err);
+//       });
+//   });
+// };
 
-export const getuserinfo = () => {
+export const alltasks = (token) => {
+  const accToken = "Bearer " + token;
   return new Promise((resolve, reject) => {
-    axios({
-      url: "http://localhost:4000/user/userinfo",
-      method: "GET",
-      withCredentials: true,
-    })
-      .then((res) => {
-        resolve(res);
+    axios
+      .get("http://localhost:4000/task/getall", null, {
+        headers: {
+          Authorization: accToken,
+        },
       })
-      .catch((err) => {
-        console.log(err.response.data);
-        reject(err.response.data);
-      });
-  });
-};
-
-export const allfixtures = () => {
-  return new Promise((resolve, reject) => {
-    axios({
-      url: "http://localhost:4000/fixtures/allfixturesavailable",
-      method: "GET",
-      withCredentials: true,
-    })
       .then((res) => {
-        console.log(res);
         resolve(res);
       })
       .catch((err) => {

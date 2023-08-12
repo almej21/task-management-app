@@ -1,17 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
 import userInfoReducer from "features/userInfoSlice";
-import fixturesReducer from "features/fixturesSlice";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
 
 const store = configureStore({
   reducer: {
     userInfo: userInfoReducer,
-    fixtures: fixturesReducer,
   },
 });
 

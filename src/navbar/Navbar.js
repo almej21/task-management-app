@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 // its critical to use the is_logged_in value from the local storage only
 //for rendering data that is not private.
 import { readFromLocalStorage } from "utils/localStorageHelpers";
@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className="Navbar">
-      <span className="nav-logo">ALMOG</span>
+      <span className="nav-logo">TASK MANAGEMENT</span>
       <div className={`nav-items ${isOpen && "open"}`}>
         <li className="active ">
           <Link className="link" to="/login">
@@ -25,13 +25,8 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link className="link" to="/fixturesplay">
-            FIXTURES & PLAY
-          </Link>
-        </li>
-        <li>
-          <Link className="link" to="/userinfo">
-            USER INFO
+          <Link className="link" to="/tasks">
+            TASKS
           </Link>
         </li>
       </div>

@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
-import * as ServerApi from "utils/serverApi";
-import "./register.scss";
-import InputCom from "../../components/Input/InputCom";
-import ButtonCom from "../../components/Button/ButtonCom";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import * as ServerApi from "utils/serverApi";
+import ButtonCom from "../../components/Button/ButtonCom";
+import InputCom from "../../components/Input/InputCom";
+import "./register.scss";
 
 const Register = () => {
   const registerDivRef = useRef(null);
@@ -20,7 +20,7 @@ const Register = () => {
       password: document.getElementById("register_pass-input").value,
     };
 
-    ServerApi.register(data)
+    ServerApi.signup(data)
       .then((res) => {
         console.log(res);
         const registerDiv = registerDivRef.current;

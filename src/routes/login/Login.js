@@ -1,12 +1,13 @@
-import React, { useState, useRef } from "react";
-import "./login.scss";
-import InputCom from "../../components/Input/InputCom";
-import ButtonCom from "../../components/Button/ButtonCom";
+import Cookie from "js-cookie";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { login, logout } from "../../features/userInfoSlice";
 import { Link } from "react-router-dom";
-import * as ServerApi from "utils/serverApi";
 import { readFromLocalStorage } from "utils/localStorageHelpers";
+import * as ServerApi from "utils/serverApi";
+import ButtonCom from "../../components/Button/ButtonCom";
+import InputCom from "../../components/Input/InputCom";
+import { login, logout } from "../../features/userInfoSlice";
+import "./login.scss";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
@@ -41,31 +42,25 @@ export default function Login() {
       password: document.getElementById("user_pass-input").value,
     };
 
-    await ServerApi.login(data)
+    await ServerApi.signin(data)
       .then((res) => {
         setIsLoggedInLocal(true);
         dispatch(login({ ...res.data, is_logged_in: true }));
-        console.log(res);
+        Cookie.set("access_token", res.data.access_token);
       })
       .catch((err) => {
-        console.log(err.response.data);
-        switch (err.response.status) {
-          case 401:
-            shakePassInput();
-            break;
-
-          case 404:
-            shakeUserNameInput();
-            break;
-
-          default:
-        }
+        console.log(err);
+        shakePassInput();
+        shakeUserNameInput();
       });
   };
 
   const handleLogOut = async (e) => {
+    setIsLoggedInLocal(false);
+    dispatch(logout());
     e.preventDefault();
-    var res = await ServerApi.logout();
+    const token = Cookie.get("access_token");
+    var res = await ServerApi.logout(token);
 
     if (res.status === 200) {
       setIsLoggedInLocal(false);
