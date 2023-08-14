@@ -1,3 +1,16 @@
 {
-  "cSpell.words": ["alltasks", "ALMOG", "getuserinfo", "reduxjs", "signin"]
+  "cSpell.words": [
+    "alltasks",
+    "ALMOG",
+    "duedate",
+    "edittask",
+    "fontawesome",
+    "fortawesome",
+    "getuserinfo",
+    "isloggedin",
+    "newtask",
+    "reduxjs",
+    "signin",
+    "taskid"
+  ]
 }

@@ -1,0 +1,51 @@
+.new-task-page {
+  color: white;
+  margin-top: 10em;
+  width: 70%;
+  textarea {
+    margin-top: 2.5rem;
+    width: 100%;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+
+  }
+  .select-status-div {
+    width: 100%;
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    font-size: 1.3rem;
+    select {
+      border-radius: 0.5rem;
+    }
+  }
+  #task-status {
+    margin-left: 5.1rem;
+  }
+  .btn-component {
+    margin-top: 5rem;
+  }
+  .date-div {
+    width: 100%;
+    font-size: 1.3rem;
+    :nth-child(2) {
+      margin-left: 3rem;
+      border-radius: 0.5rem;
+    }
+  }
+  #new-task-added {
+    h1 {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 1100px) {
+  .new-task-page {
+    width: 50rem;
+  }
+}
+
+.hidden {
+  display: none;
+}

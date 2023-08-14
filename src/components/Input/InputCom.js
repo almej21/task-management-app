@@ -1,6 +1,5 @@
-import React from "react";
-import "./inputCom.scss";
 import { useEffect } from "react";
+import "./inputCom.scss";
 
 export default function InputCom(props) {
   var inputCom;
@@ -24,6 +23,7 @@ export default function InputCom(props) {
           className={`input ${props.className}`}
           onChange={handleChange}
           value={props.value}
+          style={props.style}
         ></input>
         <label className="input-label">{props.placeholder}</label>
       </div>

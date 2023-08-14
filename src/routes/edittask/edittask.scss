@@ -1,0 +1,45 @@
+.edit-task-page {
+  margin-top: 10rem;
+  #edited-msg {
+    color: white;
+  }
+  .task-edit-div {
+    background-color: #ffffff89;
+    backdrop-filter: blur(21px);
+    -webkit-backdrop-filter: blur(21px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    padding: 4rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .edit-input {
+      margin-bottom: 3rem;
+      justify-content: space-between;
+      display: flex;
+      width: 43rem;
+      height: 2.4rem;
+      input,
+      select {
+        width: 32rem;
+        border-radius: 0.5rem;
+        border: none;
+      }
+    }
+    :last-child {
+      margin-bottom: 0;
+    }
+    * {
+      color: black;
+      font-size: 1.3rem;
+    }
+    #edit-task-status {
+      width: 32rem;
+    }
+  }
+}
+.hidden {
+  display: none !important;
+}

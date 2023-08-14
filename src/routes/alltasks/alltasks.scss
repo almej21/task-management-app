@@ -1,0 +1,37 @@
+.tasks-page {
+  margin-top: 11rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .task {
+    width: 20rem;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    height: 24rem;
+    padding: 1rem;
+    margin: 0.7rem;
+    justify-content: space-between;
+    background-color: #ffffffcd;
+    .task-id-edit {
+      display: flex;
+      justify-content: space-between;
+      .edit-task-btn {
+        border-radius: 0.5rem;
+        width: 4rem;
+        &:hover {
+          background-color: black;
+          color: white;
+          * {
+            background-color: black;
+            color: white;
+          }
+        }
+      }
+    }
+    * {
+      color: black;
+    }
+  }
+}

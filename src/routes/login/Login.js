@@ -1,5 +1,5 @@
 import Cookie from "js-cookie";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { readFromLocalStorage } from "utils/localStorageHelpers";
@@ -47,6 +47,11 @@ export default function Login() {
         setIsLoggedInLocal(true);
         dispatch(login({ ...res.data, is_logged_in: true }));
         Cookie.set("access_token", res.data.access_token);
+        Cookie.set("refresh_token", res.data.refresh_token);
+        const newAccTokCoo = Cookie.get("access_token");
+        const newRefTokCoo = Cookie.get("refresh_token");
+        console.log(`new AccTokCoo: [${newAccTokCoo}]`);
+        console.log(`new RefTokCoo: [${newRefTokCoo}]`);
       })
       .catch((err) => {
         console.log(err);
@@ -59,16 +64,40 @@ export default function Login() {
     setIsLoggedInLocal(false);
     dispatch(logout());
     e.preventDefault();
-    const token = Cookie.get("access_token");
+    const token = Cookie.get("refresh_token");
     var res = await ServerApi.logout(token);
 
     if (res.status === 200) {
+      Cookie.set("access_token", "");
+      Cookie.set("refresh_token", "");
+      const newToken = Cookie.get("access_token");
+      console.log(`after acc token cookie deletion: [${newToken}]`);
       setIsLoggedInLocal(false);
       dispatch(logout());
     } else {
       console.log(res);
     }
   };
+
+  const checkUserStatus = async () => {
+    const refToken = Cookie.get("refresh_token");
+
+    await ServerApi.isloggedin(refToken)
+      .then((res) => {
+        dispatch(login({ ...res.data, is_logged_in: true }));
+        setIsLoggedInLocal(true);
+        console.log(res);
+      })
+      .catch((err) => {
+        dispatch(logout());
+        setIsLoggedInLocal(false);
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
 
   return (
     <div className="login-page">

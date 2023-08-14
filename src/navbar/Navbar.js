@@ -25,8 +25,13 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link className="link" to="/tasks">
-            TASKS
+          <Link className="link" to="/alltasks">
+            ALL TASKS
+          </Link>
+        </li>
+        <li>
+          <Link className="link" to="/newtask">
+            NEW TASK
           </Link>
         </li>
       </div>

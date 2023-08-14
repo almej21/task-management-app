@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  writeToLocalStorage,
-  readFromLocalStorage,
-} from "utils/localStorageHelpers";
+import { writeToLocalStorage } from "utils/localStorageHelpers";
 
 const initialStateValue = {
   is_logged_in: false,

@@ -42,12 +42,28 @@ export const signup = (data) => {
 };
 
 export const logout = (token) => {
-  const accToken = "Bearer " + token;
   return new Promise((resolve, reject) => {
     axios
       .post("http://localhost:4000/auth/logout", null, {
         headers: {
-          Authorization: accToken,
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const isloggedin = (refToken) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get("http://localhost:4000/auth/isloggedin", {
+        headers: {
+          Authorization: "Bearer " + refToken,
         },
       })
       .then((res) => {
@@ -77,12 +93,71 @@ export const logout = (token) => {
 // };
 
 export const alltasks = (token) => {
-  const accToken = "Bearer " + token;
+  // console.log("sending token: ", token);
   return new Promise((resolve, reject) => {
     axios
-      .get("http://localhost:4000/task/getall", null, {
+      .get("http://localhost:4000/task/getall", {
         headers: {
-          Authorization: accToken,
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+};
+
+export const newtask = (accToken, task) => {
+  console.log("sending token: ", accToken);
+  return new Promise((resolve, reject) => {
+    axios
+      .post("http://localhost:4000/task/create", task, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + accToken,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+};
+
+export const refreshTokens = (refToken) => {
+  console.log("sending token: ", refToken);
+  return new Promise((resolve, reject) => {
+    axios
+      .post("http://localhost:4000/auth/refreshtokens", null, {
+        headers: {
+          Authorization: "Bearer " + refToken,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        // console.log(err);
+        reject(err);
+      });
+  });
+};
+
+export const edittask = (accToken, task) => {
+  console.log("sending token: ", accToken);
+  return new Promise((resolve, reject) => {
+    axios
+      .put("http://localhost:4000/task/edit", task, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + accToken,
         },
       })
       .then((res) => {

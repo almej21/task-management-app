@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import taskReducer from "features/taskSlice";
 import userInfoReducer from "features/userInfoSlice";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -9,6 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 const store = configureStore({
   reducer: {
     userInfo: userInfoReducer,
+    task: taskReducer,
   },
 });
 

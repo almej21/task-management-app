@@ -45,6 +45,10 @@
   transition: all 0.45s;
 }
 
+.nav-items {
+  margin-right: 2rem;
+}
+
 .Navbar > .nav-items > li:hover::before {
   width: 100%;
 }
@@ -63,17 +67,15 @@
     left: 0;
     width: 100%;
     transform: translateX(-100%);
-    transition: all .45s;
+    transition: all 0.45s;
   }
 
   .Navbar > .nav-items > li::before {
-      background: transparent;
-      
+    background: transparent;
   }
 
   .Navbar > .nav-items.open {
-      transform: translateX(0);
-      
+    transform: translateX(0);
   }
 
   .Navbar > .nav-toggle {
@@ -115,13 +117,13 @@
   }
 
   .nav-toggle.open > .bar {
-      transform: translateX(-40px);
-      background: transparent;
+    transform: translateX(-40px);
+    background: transparent;
   }
 
   .nav-toggle.open > .bar::before {
-      width: 32px;
-      transform: rotate(45deg) translate(26px, -26px);
+    width: 32px;
+    transform: rotate(45deg) translate(26px, -26px);
   }
 
   .nav-toggle.open > .bar::after {
