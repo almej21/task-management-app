@@ -30,7 +30,6 @@ export const signup = (data) => {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       })
       .then((res) => {
         resolve(res);

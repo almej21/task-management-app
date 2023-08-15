@@ -50,7 +50,10 @@ const AllTasks = () => {
     ServerApi.deletetask(accToken, id)
       .then((res) => {
         console.log("you have deleted the task");
-        task.parentElement.remove();
+        task.parentElement.classList.add("fade-out");
+        setTimeout(() => {
+          task.parentElement.remove();
+        }, 1000);
       })
       .catch((err) => {
         console.log("error with deleting the task!");
