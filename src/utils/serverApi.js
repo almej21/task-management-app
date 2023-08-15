@@ -169,3 +169,22 @@ export const edittask = (accToken, task) => {
       });
   });
 };
+
+export const deletetask = (token, id) => {
+  console.log("sending token: ", token);
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`http://localhost:4000/task/delete/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+};

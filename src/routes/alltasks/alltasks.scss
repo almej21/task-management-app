@@ -1,37 +1,70 @@
 .tasks-page {
-  margin-top: 11rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  .task {
-    width: 20rem;
-    border: 0.2rem solid black;
-    border-radius: 0.8rem;
+  h1 {
+    color: white;
+  }
+  .login-title {
+    margin-top: 18rem;
+  }
+  .tasks-page-title {
+    margin-top: 7rem;
+    text-align: center;
+  }
+  .tasks {
+    margin-top: 4rem;
     display: flex;
-    flex-direction: column;
-    height: 24rem;
-    padding: 1rem;
-    margin: 0.7rem;
-    justify-content: space-between;
-    background-color: #ffffffcd;
-    .task-id-edit {
+    flex-wrap: wrap;
+    justify-content: center;
+    .task {
+      width: 20rem;
+      border: 0.2rem solid black;
+      border-radius: 0.8rem;
+      -webkit-backdrop-filter: blur(21px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
       display: flex;
+      flex-direction: column;
+      height: 24rem;
+      padding: 1rem;
+      margin: 0.7rem;
       justify-content: space-between;
-      .edit-task-btn {
-        border-radius: 0.5rem;
-        width: 4rem;
-        &:hover {
-          background-color: black;
-          color: white;
-          * {
+      background-color: #ffffffcd;
+      .task-id-edit {
+        display: flex;
+        justify-content: space-between;
+        .edit-task-btn {
+          border-radius: 0.5rem;
+          width: 4rem;
+          &:hover {
             background-color: black;
             color: white;
+            * {
+              background-color: black;
+              color: white;
+            }
           }
         }
       }
-    }
-    * {
-      color: black;
+      h1 {
+        color: black;
+      }
+      .status-delete-div {
+        display: flex;
+        justify-content: space-between;
+        button {
+          border-radius: 0.5rem;
+          border: 0.15rem solid rgb(255, 0, 0);
+          width: 2rem;
+          height: 2rem;
+          color: #ff0000;
+          &:hover {
+            background-color: rgb(255, 0, 0);
+            color: white;
+            * {
+              background-color: rgb(255, 0, 0);
+              color: white;
+            }
+          }
+        }
+      }
     }
   }
 }
