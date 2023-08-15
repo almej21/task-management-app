@@ -27,7 +27,6 @@ const NewTask = () => {
   const global_is_logged_in = readFromLocalStorage("is_logged_in");
 
   const [TaskTitle, setTaskTitle] = useState("");
-  const [TaskDescription, setTaskDescription] = useState("");
   const [minDate, setMinDate] = useState(DateHelpers.getTodayDate());
 
   const handleCreate = async (e) => {
@@ -35,7 +34,7 @@ const NewTask = () => {
     const accToken = Cookie.get("access_token");
 
     const data = {
-      author: "almog",
+      author: Cookie.get("user_name"),
       title: document.getElementById("task_title-input").value,
       description: document.getElementById("task-description").value,
       status: document.getElementById("task-status").value,

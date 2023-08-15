@@ -44,6 +44,8 @@ export default function Login() {
 
     await ServerApi.signin(data)
       .then((res) => {
+        console.log(res);
+        Cookie.set("user_name", res.data.user_name);
         setIsLoggedInLocal(true);
         dispatch(login({ ...res.data, is_logged_in: true }));
         Cookie.set("access_token", res.data.access_token);
