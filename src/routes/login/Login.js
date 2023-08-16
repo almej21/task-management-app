@@ -44,16 +44,11 @@ export default function Login() {
 
     await ServerApi.signin(data)
       .then((res) => {
-        console.log(res);
         Cookie.set("user_name", res.data.user_name);
         setIsLoggedInLocal(true);
         dispatch(login({ ...res.data, is_logged_in: true }));
         Cookie.set("access_token", res.data.access_token);
         Cookie.set("refresh_token", res.data.refresh_token);
-        const newAccTokCoo = Cookie.get("access_token");
-        const newRefTokCoo = Cookie.get("refresh_token");
-        console.log(`new AccTokCoo: [${newAccTokCoo}]`);
-        console.log(`new RefTokCoo: [${newRefTokCoo}]`);
       })
       .catch((err) => {
         console.log(err);
